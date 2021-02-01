@@ -1,4 +1,4 @@
-#TODO
+# TODO
 1. Create configuration file
 1. Create entry "setAlgorithm" to set on the configuration file, the algorithm to use.
 1. Create entry "getAlgorithm" which will get the algorithm currently set in the configuration file.
