@@ -1,6 +1,7 @@
 import express from 'express';
 import debug from 'debug';
 import couponsService from '../service/coupon.service';
+import algorithmService from '../../algorithm/service/algorithm.service';
 
 const log: debug.IDebugger = debug('app:algorithms-controller');
 
@@ -21,8 +22,14 @@ class CouponsController {
     }
 
     getCouponsByAlgorithm(req: express.Request, res: express.Response) {
-        const algorithm = couponsService.getCoupons(req.params.algorithmName, req.params.amount);
-        res.status(200).send(algorithm);
+        const coupons = couponsService.getCoupons(req.params.algorithmName, req.params.amount);
+        res.status(200).send(coupons);
+    }
+
+    getCoupons(req: express.Request, res: express.Response) {
+        const algorithm = algorithmService.getAlgorithm();
+        const coupons = couponsService.getCoupons(algorithm, req.params.amount);
+        res.status(200).send(coupons);
     }
 }
 

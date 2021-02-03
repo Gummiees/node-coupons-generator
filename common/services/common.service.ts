@@ -1,5 +1,8 @@
+
+import fs from 'fs';
 class CommonService {
     private static instance: CommonService;
+    private static file: string = `${__dirname}/../../assets/configuration.json`;
 
     static getInstance(): CommonService {
         if (!CommonService.instance) {
@@ -21,6 +24,14 @@ class CommonService {
 
     hasValue(text: string): boolean {
         return text !== null && text !== undefined;
+    }
+
+    writeConfiguration(text: string): void {
+        fs.writeFileSync(CommonService.file, text);
+    }
+
+    readConfiguration(): string {
+        return fs.readFileSync(CommonService.file,'utf8');
     }
 }
 

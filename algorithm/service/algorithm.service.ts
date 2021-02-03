@@ -1,8 +1,7 @@
-import { CRUD } from '../../common/crud.interface';
 import commonService from '../../common/services/common.service';
 import { Algorithms } from '../model/algorithm.models';
 
-class AlgorithmService implements CRUD {
+class AlgorithmService {
     private static instance: AlgorithmService;
 
     static getInstance(): AlgorithmService {
@@ -16,12 +15,20 @@ class AlgorithmService implements CRUD {
         return commonService.toArray(Algorithms);
     };
 
-    getById(algorithmName: string): string {
+    getDescription(algorithmName: string): string {
         return `The algorithm '${algorithmName}' could be explained here.`;
     }
 
     isImplemented(algorithmName: string): boolean {
         return this.list().includes(algorithmName);
+    }
+
+    setAlgorithm(algorithmName: string): void {
+        commonService.writeConfiguration(algorithmName);
+    }
+
+    getAlgorithm(): string {
+        return commonService.readConfiguration();
     }
 }
 

@@ -30,6 +30,13 @@ class AlgorithmMiddleware {
         }
         next();
     }
+
+    checkAlgorithm(req: express.Request, res: express.Response, next: express.NextFunction) {
+        if (!algorithmService.getAlgorithm()) {
+            res.status(400).send({error: `You first need to set an algorithm in the configuration.`});
+        }
+        next();
+    }
 }
 
 export default AlgorithmMiddleware.getInstance();

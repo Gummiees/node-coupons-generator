@@ -1,7 +1,5 @@
-import algorithmService from '../../algorithm/service/algorithm.service';
-import { CRUD } from '../../common/crud.interface';
 
-class CouponService implements CRUD {
+class CouponService {
     private static instance: CouponService;
     private coupons: number[] = [];
 

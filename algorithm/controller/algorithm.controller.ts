@@ -20,8 +20,22 @@ class AlgorithmController {
         res.status(200).send(algorithms);
     }
 
-    getAlgorithmById(req: express.Request, res: express.Response) {
-        const algorithm = algorithmService.getById(req.params.algorithmName);
+    getAlgorithmDescription(req: express.Request, res: express.Response) {
+        const algorithm = algorithmService.getDescription(req.params.algorithmName);
+        res.status(200).send(algorithm);
+    }
+
+    setAlgorithm(req: express.Request, res: express.Response) {
+        try {
+        algorithmService.setAlgorithm(req.params.algorithmName);
+        res.status(200).send();
+        } catch (e) {
+            res.status(405).send("Unexpected error while writing the configuration file.");
+        }
+    }
+
+    getAlgorithm(req: express.Request, res: express.Response) {
+        const algorithm: string = algorithmService.getAlgorithm();
         res.status(200).send(algorithm);
     }
 }
