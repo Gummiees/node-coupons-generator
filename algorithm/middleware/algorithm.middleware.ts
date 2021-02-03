@@ -32,10 +32,14 @@ class AlgorithmMiddleware {
     }
 
     checkAlgorithm(req: express.Request, res: express.Response, next: express.NextFunction) {
-        if (!algorithmService.getAlgorithm()) {
-            res.status(400).send({error: `You first need to set an algorithm in the configuration.`});
+        try {
+            if (!algorithmService.getAlgorithm()) {
+                res.status(400).send({error: `You first need to set an algorithm in the configuration.`});
+            }
+            next();
+        }catch (e) {
+            res.status(500).send("Unexpected error while reading the configuration file.");
         }
-        next();
     }
 }
 

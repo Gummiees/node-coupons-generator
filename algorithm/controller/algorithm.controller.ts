@@ -30,13 +30,17 @@ class AlgorithmController {
         algorithmService.setAlgorithm(req.params.algorithmName);
         res.status(200).send();
         } catch (e) {
-            res.status(405).send("Unexpected error while writing the configuration file.");
+            res.status(500).send("Unexpected error while writing the configuration file.");
         }
     }
 
     getAlgorithm(req: express.Request, res: express.Response) {
-        const algorithm: string = algorithmService.getAlgorithm();
-        res.status(200).send(algorithm);
+        try {
+            const algorithm: string = algorithmService.getAlgorithm();
+            res.status(200).send(algorithm);
+        } catch (e) {
+            res.status(500).send("Unexpected error while reading the configuration file.");
+        }
     }
 }
 
