@@ -20,10 +20,10 @@ export class CouponsRoutes extends CommonRoutesConfig {
             .get(algorithmController.setAlgorithm)
             .get(couponController.getCouponsByAlgorithm);
         
-            this.app.route(`/${this.getControllerName()}/:amount`)
-                .all(couponMiddleware.checkAmount)
-                .all(algorithmMiddleware.checkAlgorithm)
-                .get(couponController.getCoupons);
+        this.app.route(`/${this.getControllerName()}/:amount`)
+            .all(couponMiddleware.checkAmount)
+            .all(algorithmMiddleware.checkAlgorithm)
+            .get(couponController.getCoupons);
 
         return this.app;
     }
