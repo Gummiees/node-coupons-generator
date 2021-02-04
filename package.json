@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "RMDIR dist /S /Q && tsc && copyfiles ./assets/configuration.json ./dist && node ./dist/app.js"
+    "rmdist": "RMDIR dist /S /Q",
+    "start": "cd src && tsc && cd .. && copyfiles ./assets/configuration.json ./dist && node ./dist/app.js"
   },
   "repository": {
     "type": "git",
@@ -26,7 +27,12 @@
     "@types/cors": "^2.8.9",
     "@types/debug": "^4.1.5",
     "@types/express": "^4.17.11",
+    "@typescript-eslint/eslint-plugin": "^4.14.2",
+    "@typescript-eslint/parser": "^4.14.2",
     "copyfiles": "^2.4.1",
+    "eslint": "^7.19.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
     "source-map-support": "^0.5.19",
     "tslint": "^6.1.3",
     "typescript": "^4.1.3"
